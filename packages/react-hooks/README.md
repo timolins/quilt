@@ -84,3 +84,14 @@ function MockComponent() {
   );
 }
 ```
+
+### `usePrevious()`
+
+This hook will store the previous value of a given variable.
+
+```tsx
+function MockComponent({value}) {
+  const previousValue = usePrevious(value);
+  return null;
+}
+```
