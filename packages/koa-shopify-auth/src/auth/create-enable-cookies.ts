@@ -10,7 +10,10 @@ const FOOTER = `Cookies let the app authenticate you by temporarily storing your
 information. They expire after 30 days.`;
 const ACTION = 'Enable cookies';
 
-export default function createEnableCookies({apiKey}: OAuthStartOptions) {
+export default function createEnableCookies({
+  apiKey,
+  prefix = '',
+}: OAuthStartOptions) {
   return function enableCookies(ctx: Context) {
     const {query} = ctx;
     const {shop} = query;
@@ -29,7 +32,7 @@ export default function createEnableCookies({apiKey}: OAuthStartOptions) {
     html,
     body {
       min-height:100%;
-      height:100%; 
+      height:100%;
       font-size:1.5rem;
       font-weight:400;
       line-height:2rem;
@@ -89,7 +92,7 @@ export default function createEnableCookies({apiKey}: OAuthStartOptions) {
     .Polaris-Page {
       margin:0 auto;
       padding:0;
-      max-width:99.8rem; 
+      max-width:99.8rem;
     }
 
     @media (min-width: 30.625em) {
@@ -319,11 +322,11 @@ export default function createEnableCookies({apiKey}: OAuthStartOptions) {
       min-width:1px;
       min-height:1px;
     }
-      
+
     @media (min-width: 40em) {
       .Polaris-Button__Content {
         font-size:1.4rem;
-      } 
+      }
     }
 
     .Polaris-Button--primary {
@@ -366,11 +369,11 @@ export default function createEnableCookies({apiKey}: OAuthStartOptions) {
   <script>
     window.apiKey = "${apiKey}";
     window.shopOrigin = "https://${shop}";
-    
+
     (function() {
       function setCookieAndRedirect() {
         document.cookie = "shopify.cookies_persist=true";
-        window.location.href = "/auth?shop=${shop}"
+        window.location.href = "${prefix}/auth?shop=${shop}"
       }
 
       function shouldDisplayPrompt() {
